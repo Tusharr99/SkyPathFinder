@@ -1,81 +1,53 @@
-# MovieBookingSystem
+# SkyPathFinder
 
-MovieBookingSystem: A full-stack app for movie ticket booking & cinema management. Built with React, Node.js, Express, MySQL. Features JWT auth, Admin Dashboard for movies/theaters, and responsive UI with Tailwind CSS.
+A web-based flight route planner that uses the A* algorithm to find optimal flight paths between Indian airports based on user-defined preferences for distance, cost, or time. Features interactive map visualization using Leaflet.js and a responsive UI built with JavaScript, HTML, and CSS.
 
 ## Features
-- **User Authentication**: Secure login/registration for users and admins using JWT and bcrypt.
-- **Admin Dashboard**: Manage movies, theaters, and screenings with RESTful APIs.
-- **Movie Booking**: Browse movies, select screenings, and book tickets with a responsive UI.
-- **Database**: MySQL with Sequelize ORM for efficient data management.
+- **A* Pathfinding**: Optimizes routes based on user-specified weights for distance, cost, or time.
+- **Interactive Map**: Visualizes airports and routes using Leaflet.js with OpenStreetMap tiles.
+- **Dynamic Preferences**: Allows users to prioritize distance, cost, or time (weights sum to 1).
+- **Flight Data Processing**: Parses airport and flight data from a text file for graph-based pathfinding.
+- **Responsive UI**: Built with JavaScript, HTML, and CSS for seamless user interaction.
 
-## Tech Stack
-- **Frontend**: React, React Router, Axios, Tailwind CSS
-- **Backend**: Node.js, Express, Sequelize, JWT, bcrypt
-- **Database**: MySQL
-- **Tools**: Git, VS Code, npm, PowerShell
+## Technologies
+- **Languages**: JavaScript, HTML, CSS
+- **Libraries**: Leaflet.js for map visualization
+- **Algorithms**: A* algorithm, graph data structure, priority queue
+- **Data**: Text file (`flight_data_india.txt`) for airport and flight details
+- **External Resources**: OpenStreetMap for map tiles
 
 ## Installation
-
-### Prerequisites
-- Node.js (v18.x or higher)
-- MySQL (8.x or higher)
-- Git
-
-### Setup
-1. **Clone the Repository**:
+1. Clone the repository:
    ```bash
-   git clone https://github.com/Tusharr99/MovieBookingSystem.git
-   cd MovieBookingSystem
+   git clone https://github.com/yourusername/skypathfinder.git
    ```
-
-2. **Backend Setup**:
+2. Ensure `flight_data_india.txt` is in the project root directory.
+3. Install a local server (e.g., `http-server`):
    ```bash
-   cd backend
-   npm install
+   npm install -g http-server
    ```
-   Create a `.env` file in `backend/`:
-   ```
-   PORT=5000
-   DB_HOST=localhost
-   DB_USER=movie_user
-   DB_PASSWORD=your_password
-   DB_NAME=movie_booking
-   JWT_SECRET=your_jwt_secret
-   ```
-   Set up MySQL:
+4. Run the server:
    ```bash
-   mysql -u root -p
-   CREATE DATABASE movie_booking;
-   CREATE USER 'movie_user'@'localhost' IDENTIFIED BY 'your_password';
-   GRANT ALL PRIVILEGES ON movie_booking.* TO 'movie_user'@'localhost';
-   EXIT;
+   http-server
    ```
-   Run migrations (if using Sequelize):
-   ```bash
-   npx sequelize db:migrate
-   ```
-   Start the backend:
-   ```bash
-   npm start
-   ```
-
-3. **Frontend Setup**:
-   ```bash
-   cd ../frontend
-   npm install
-   npm start
-   ```
-
-4. **Access the Application**:
-   - Frontend: `http://localhost:3000`
-   - Backend: `http://localhost:5000`
+5. Open `index.html` in a web browser (e.g., `http://localhost:8080`).
 
 ## Usage
-- **Admin**: Log in with `admin@gmail.com` and `admin123` to manage movies, theaters, and screenings.
-- **Users**: Register/login to browse movies and book tickets.
-- **Key Endpoints**:
-  - `POST /api/auth/login`: Authenticate users/admins.
-  - `POST /api/admin/movies`: Add movies (admin only).
-  - `GET /api/theatres`: List theaters.
-  - `GET /api/screenings`: List screenings.
+1. Select source and destination airports from the dropdown menus.
+2. Adjust preference sliders for distance, cost, and time (weights must sum to 1).
+3. Click "Find Route" to view the direct route (if available) and the shortest path, displayed on an interactive map with detailed metrics (distance, cost, time).
+
+## Project Structure
+- `index.html`: Main HTML file for the web interface.
+- `styles.css`: Styling for responsive UI.
+- `app.js`: Core logic, including A* algorithm, graph processing, and map rendering.
+- `flight_data_india.txt`: Sample dataset with Indian airport coordinates and flight details.
+
+## Future Enhancements
+- Integrate real-time flight data via APIs.
+- Support multi-city itinerary planning.
+- Add alternative pathfinding algorithms (e.g., Dijkstra’s).
+- Enhance UI with advanced styling and mobile responsiveness.
+
+
 
